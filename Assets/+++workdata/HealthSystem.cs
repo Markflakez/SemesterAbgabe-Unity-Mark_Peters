@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TemporaryRotate : MonoBehaviour
+public class HealthSystem : MonoBehaviour
 {
-    public float rotationSpeed;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,6 @@ public class TemporaryRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.eulerAngles += new Vector3(0, rotationSpeed * Time.deltaTime, 0);
+        
     }
 }
