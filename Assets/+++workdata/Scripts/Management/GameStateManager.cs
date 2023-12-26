@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //A very quick and dirty implementation of a GameStateManager.
 //The job the GameStateManager is to mediate between different GameStates.
@@ -13,9 +14,40 @@ public class GameStateManager : MonoBehaviour
 {
     private static GameStateManager Instance;
 
+    public GameObject inventoryManager;
+
     private void Awake()
     {
         Instance = this;
+    }
+
+
+    #region Kommentare
+    //Wenn eine Szene geladen wird, wird die Methode OnSceneLoaded aufgerufen
+    #endregion
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    #region Kommentare
+    //Wenn eine Szene geladen wird, wird überprüft, ob es sich um die Spielszene handelt
+    //Wenn ja, wird das Inventar aktiviert
+    //Wenn nein, wird das Inventar deaktiviert
+    #endregion
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (inventoryManager != null)
+        {
+            if (scene.buildIndex == (int)SceneLoader.DefaultScenes.GamePlay)
+            {
+                inventoryManager.SetActive(true);
+            }
+            else
+            {
+                inventoryManager.SetActive(false);
+            }
+        }
     }
 
     public static void StartGame()
