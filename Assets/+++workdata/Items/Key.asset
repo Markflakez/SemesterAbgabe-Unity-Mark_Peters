@@ -16,3 +16,4 @@ MonoBehaviour:
   itemCount: 1
   maxStackCount: 2
   itemImage: {fileID: 21300000, guid: 21bc8cb8cf3a5a24988f79caba0eed66, type: 3}
+  collectSound: {fileID: 8300000, guid: 99bc8b8701012824ba6aa1d13ace0030, type: 3}
