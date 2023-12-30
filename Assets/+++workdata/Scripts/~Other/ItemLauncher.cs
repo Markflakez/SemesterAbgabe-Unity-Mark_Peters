@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ItemLauncher : MonoBehaviour
 {
@@ -9,8 +10,8 @@ public class ItemLauncher : MonoBehaviour
     public GameObject itemPrefab;
     public GameObject canvas;
     public float leftCorner, rightCorner, top;
-    public float spawnInterval, minSpawnForce, maxSpawnForce;
-    public float spriteSize, itemLifeTime, itemSpawnMultiplier = 0.25f;
+    public int minSpawnForce, maxSpawnForce;
+    public float spriteSize, itemLifeTime, itemSpawnMultiplier = 0;
     public TextMeshProUGUI itemLaunchMultiplierText;
 
     #region OnEnable Kommentare
@@ -44,25 +45,17 @@ public class ItemLauncher : MonoBehaviour
     #endregion
     private void UpdateItemMultiplier(float multiplier)
     {
-        itemSpawnMultiplier += multiplier;
-        itemLaunchMultiplierText.text = "x" + itemSpawnMultiplier.ToString();
+        itemSpawnMultiplier = multiplier;
+        itemLaunchMultiplierText.text = itemSpawnMultiplier.ToString() + "x";
         StartNewSpawnCoroutine();
     }
 
     #region IncreaseItemMultiplier Kommentare
-    //Erhöht den Multiplier für den SpawnInterval der Items.
+    //Veränder den Multiplier für den SpawnInterval der Items nach Slider Value.
     #endregion
-    public void IncreaseItemMultiplier()
+    public void IncreaseDecreaseItemMultplier(Slider slider)
     {
-        UpdateItemMultiplier(0.25f);
-    }
-
-    #region DecreaseItemMultiplier Kommentare
-    //Verringert den Multiplier für den SpawnInterval der Items.
-    #endregion
-    public void DecreaseItemMultiplier()
-    {
-        UpdateItemMultiplier(-0.25f);
+        UpdateItemMultiplier(slider.value);
     }
 
     #region LaunchItem Kommentare
@@ -84,11 +77,14 @@ public class ItemLauncher : MonoBehaviour
     #endregion
     public IEnumerator SpawnItem()
     {
-        yield return new WaitForSeconds(spawnInterval / itemSpawnMultiplier);
+        yield return new WaitForSeconds(1);
         while (true)
         {
-            LaunchItem();
-            yield return new WaitForSeconds(spawnInterval / itemSpawnMultiplier);
+            if (itemSpawnMultiplier > 0)
+            {
+                LaunchItem();
+            }
+            yield return new WaitForSeconds(1 / itemSpawnMultiplier);
         }
     }
 

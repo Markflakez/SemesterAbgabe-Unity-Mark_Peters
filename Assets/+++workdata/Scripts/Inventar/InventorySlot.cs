@@ -64,7 +64,7 @@ public class InventorySlot : MonoBehaviour
         else ResetUIElements();
 
         if (item != null && itemCountText != null)
-            itemCountText.color = item.itemCount < item.maxStackCount ? Color.white : Color.black;
+            itemCountText.color = item.itemCount < item.maxStackCount ? Color.white : Color.red;
     }
 
     #region UpdadeUIElements Kommentare
@@ -75,6 +75,15 @@ public class InventorySlot : MonoBehaviour
         itemNameText.text = item.itemName;
         itemCountText.text = item.itemCount.ToString();
         itemImage.sprite = item.itemImage;
+
+        if(item.itemCount == item.maxStackCount)
+        {
+            itemImage.color = new Color(.2f, .2f, .2f);
+        }
+        else
+        {
+            itemImage.color = Color.white;
+        }
 
         EnableUIElements();
         AnimateItemImageScale();

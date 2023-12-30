@@ -55,8 +55,11 @@ public class LoadingScreen : MonoBehaviour
 
     public void Hide()
     {
-        StopAllCoroutines();
-        StartCoroutine(HideCoroutine());
+        if (gameObject.activeInHierarchy)
+        {
+            StopAllCoroutines();
+            StartCoroutine(HideCoroutine());
+        }
     }
 
     //in this coroutine, we fade out the loading screen over a certain time. 

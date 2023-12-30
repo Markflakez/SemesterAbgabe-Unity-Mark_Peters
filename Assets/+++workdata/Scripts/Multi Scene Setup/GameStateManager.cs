@@ -5,11 +5,9 @@ public class GameStateManager : MonoBehaviour
 {
     private static GameStateManager Instance;
 
-    public GameObject inventoryManager;
-    public GameObject healthSystem;
-    public GameObject instructions;
-    public GameObject buttons;
+    public GameObject gameUI;
     public GameObject itemLauncher;
+    public GameObject particleSystems;
 
     private void Awake()
     {
@@ -27,42 +25,39 @@ public class GameStateManager : MonoBehaviour
 
     #region Kommentare
     //Wenn eine Szene geladen wird, wird überprüft, ob es sich um die Szene handelt
-    //Wenn ja, werden alle genannten Elemente der Szene aktiviert
-    //Wenn nein, werden alle genannten Elemente der Szene deaktiviert
+    //Wenn ja, wird das Game UI und der itemLauncher in der Szene aktiviert
+    //Wenn nein, wird das Game UI und der itemLauncher in der Szene deaktiviert
     #endregion
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (inventoryManager == null)
-            return;
-
-        if (scene.buildIndex == (int)SceneLoader.DefaultScenes.GamePlay)
+        if(scene.buildIndex == (int)SceneLoader.DefaultScenes.MainMenu)
         {
-            EnableSceneElements();
+            if (!gameUI || !itemLauncher || !particleSystems)
+                return;
+            DisableSceneElements();
         }
         else
         {
-            DisableSceneElements();
+            if (!gameUI || !itemLauncher || ! particleSystems)
+                return;
+            EnableSceneElements();
         }
     }
 
-    #region Kommentare DisableSceneElements und EnableSceneElements
-    //Deaktiviert/aktiviert alle Elemente der Szene
+    #region Kommentare DisableSceneGameObjects und EnableSceneGameObjects
+    //Deaktiviert/aktiviert alle wichtigen GameObjects der Szene
     #endregion
     private void DisableSceneElements()
     {
-        inventoryManager.SetActive(false);
-        healthSystem.SetActive(false);
-        instructions.SetActive(false);
-        buttons.SetActive(false);
+        gameUI.SetActive(false);
         itemLauncher.SetActive(false);
+        particleSystems.SetActive(false);
     }
     private void EnableSceneElements()
     {
-        inventoryManager.SetActive(true);
-        healthSystem.SetActive(true);
-        instructions.SetActive(true);
-        buttons.SetActive(true);
+        gameUI.SetActive(true);
         itemLauncher.SetActive(true);
+        particleSystems.SetActive(true);
     }
 
 
@@ -77,7 +72,6 @@ public class GameStateManager : MonoBehaviour
         //the hardcoded "3" should be replaced by an actual scene.
         Instance.StartCoroutine(Instance.LoadScenesCoroutine(3, (int)SceneLoader.DefaultScenes.MainMenu));
     }
-    
     private IEnumerator LoadScenesCoroutine(int oldScene, int newScene)
     {
         LoadingScreen.Show(this);

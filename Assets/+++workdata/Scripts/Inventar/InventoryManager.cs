@@ -10,12 +10,30 @@ public class InventoryManager : MonoBehaviour
     public AudioSource audioSource;
     public HealthSystem healthSystem;
 
+
+
+    #region Update Kommentare
+    #endregion
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            foreach (ItemLauncherItem itemLauncheritem in FindObjectsOfType<ItemLauncherItem>())
+            {
+                itemLauncheritem.AddItemtoInventory();
+            }
+        }
+    }
+
+
     #region AddItemToInventory Kommentare
     //Fügt ein Item zum Inventar hinzu
     //Wenn das Item bereits im Inventar ist, wird die Anzahl erhöht
     //Wenn das Item nicht im Inventar ist, wird ein neuer Slot erstellt
     //Wenn das Item nicht im Inventar ist und kein Slot mehr frei ist, wird die Anzahl des Items im Slot erhöht
     #endregion
+
     public void AddItemToInventory(Item newItem, GameObject itemToDestroy)
     {
         InventorySlot existingSlot = GetExistingSlot(newItem);
@@ -93,9 +111,11 @@ public class InventoryManager : MonoBehaviour
     private void UpdateInstructionColors()
     {
         TextMeshProUGUI itemInstruction = GameObject.Find("ItemInstruction").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI AutoCollectItems = GameObject.Find("AutoCollectItems").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI removeItemInstruction = GameObject.Find("RemoveItemInstruction").GetComponent<TextMeshProUGUI>();
 
         itemInstruction.color = CheckFullSlotsCount() == inventorySlots.Count ? Color.gray : itemInstruction.color;
+        AutoCollectItems.color = CheckFullSlotsCount() == inventorySlots.Count ? Color.gray : AutoCollectItems.color;
         removeItemInstruction.color = CheckEmptySlotsCount() != 0 ? Color.white : removeItemInstruction.color;
     }
 

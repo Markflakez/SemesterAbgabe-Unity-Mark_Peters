@@ -23,10 +23,17 @@ public class GameplayLoop : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             ReturnToMainMenu();
+        if (Input.GetKeyDown(KeyCode.R))
+            ReloadGamePlay();
     }
 
     public void ReturnToMainMenu()
     {
         GameStateManager.GoToMainMenu();
+    }
+
+    public void ReloadGamePlay()
+    {
+        SceneLoader.ReloadGame();
     }
 }

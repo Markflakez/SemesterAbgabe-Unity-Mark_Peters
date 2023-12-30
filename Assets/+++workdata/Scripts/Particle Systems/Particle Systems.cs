@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParticleSystems : MonoBehaviour
 {
@@ -46,13 +48,14 @@ public class ParticleSystems : MonoBehaviour
     //Startet die Bewegung des Partikelsystems, wenn das Burst-Partikelsystem gestartet werden kann.
     //Spielt den resistence-Sound ab und setzt den isMoving-Bool auf true.
     #endregion
-    public void StartParticleSystems()
+    public void StartParticleSystems(Button button)
     {
         if (!canBurst)
             return;
 
         particleSystemMove.Play();
         resistenceAudiosource.Play();
+        button.interactable = false;
         isMoving = true;
         canBurst = false;
     }

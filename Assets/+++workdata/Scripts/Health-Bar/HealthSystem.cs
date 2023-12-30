@@ -22,7 +22,7 @@ public class HealthSystem : MonoBehaviour
     //Stellt sicher, dass der Health Wert nicht unter 0 fällt.
     //Benachrichtigt alle Observer über die Veränderung des Health Wertes.
     #endregion
-    public void TakeDamage(float damage)
+    public void DecreaseHealth(float damage)
     {
         currentHealth -= damage;
         if (currentHealth < 0)

@@ -33,6 +33,7 @@ public class RemoveItem : MonoBehaviour
 
         UpdateRemoveItemInstructionColor();
         SetInstructionColor("ItemInstruction", Color.white);
+        SetInstructionColor("AutoCollectItems", Color.white);
     }
 
     #region UpdateItemLaunchers Kommentare

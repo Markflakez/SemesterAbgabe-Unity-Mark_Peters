@@ -46,9 +46,16 @@ public class ItemLauncherItem : MonoBehaviour, IPointerClickHandler
     #endregion
     public void OnPointerClick(PointerEventData eventData)
     {
+        AddItemtoInventory();
+    }
+
+    public void AddItemtoInventory()
+    {
         inventoryManager.AddItemToInventory(item, gameObject);
         UpdateItemLaunchersAvailability();
     }
+
+
 
     #region InitializeItemLauncher Kommentare
     //Initialisiert das ItemLauncherItem.
