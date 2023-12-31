@@ -10,7 +10,8 @@ public class RemoveItem : MonoBehaviour
     public AudioSource removeItemAudioSource;
 
     #region Awake Kommentare
-    //Awake-Methode wird aufgerufen, um Referenzen zu initialisieren und die UI-Farbe festzulegen
+    //Referenzen werden gesetzt
+    //Die Farbe der Entfernen-Anweisung wird auf grau gesetzt, weil das Inventar zu Beginn leer ist
     #endregion
     public void Awake()
     {
@@ -20,7 +21,8 @@ public class RemoveItem : MonoBehaviour
     }
 
     #region DecreaseItemCount Kommentare
-    //Entfernt ein Item aus dem Inventar und aktualisiert die Items in der Szene
+    //Entfernt ein Item aus dem Inventar und aktualisiert die Verfügbarkeit aller Items in der Szene (zeigt die Items, die aufgesammelt werden kann normal and und die anderen ausgegraut)
+    //Stell die Farbe der Entfernen-Anweisung auf weiß, weil das Inventar mindestens einen freien Slot hat
     #endregion
     public void DecreaseItemCount()
     {
@@ -29,11 +31,11 @@ public class RemoveItem : MonoBehaviour
             inventorySlot.RemoveItem(inventorySlot.item);
             removeItemAudioSource.Play();
             UpdateItemLaunchers();
-        }
 
-        UpdateRemoveItemInstructionColor();
-        SetInstructionColor("ItemInstruction", Color.white);
-        SetInstructionColor("AutoCollectItems", Color.white);
+            UpdateRemoveItemInstructionColor();
+            SetInstructionColor("ItemInstruction", Color.white);
+            SetInstructionColor("AutoCollectItems", Color.white);
+        }
     }
 
     #region UpdateItemLaunchers Kommentare
@@ -48,7 +50,7 @@ public class RemoveItem : MonoBehaviour
     }
 
     #region UpdateRemoveItemInstructionColor Kommentare
-    //Aktualisiert die Farbe der Entfernen-Anweisung basierend auf der Anzahl der Slots im Inventar
+    //Aktualisiert die Farbe des Items in der Szene basierend auf der Verfügbarkeit im Inventar (weiß wenn verfügbar, grau wenn nicht verfügbar)
     #endregion
     private void UpdateRemoveItemInstructionColor()
     {
@@ -56,7 +58,7 @@ public class RemoveItem : MonoBehaviour
     }
 
     #region SetInstructionColor Kommentare
-    //Ändert die Farbe der Anweisung
+    //Ändert die Farbe der Hilfe-Anweisungen
     #endregion
     private void SetInstructionColor(string instructionName, Color color)
     {

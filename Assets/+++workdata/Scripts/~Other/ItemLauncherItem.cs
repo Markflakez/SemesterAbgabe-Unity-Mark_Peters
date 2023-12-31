@@ -14,7 +14,7 @@ public class ItemLauncherItem : MonoBehaviour, IPointerClickHandler
 
     #region Awake Kommentare
     //Wird aufgerufen, wenn das GameObject aktiviert wird.
-    //Initialisiert den InventoryManager.
+    //Sucht und initialisiert das InventoryManager-Script.
     #endregion
     private void Awake()
     {
@@ -22,8 +22,8 @@ public class ItemLauncherItem : MonoBehaviour, IPointerClickHandler
     }
 
     #region Start Kommentare
-    //Wird aufgerufen, wenn das GameObject aktiviert wird.
-    //Setzt das Sprite und die Größe des Sprites. Überprüft, ob das Item aufgenommen werden kann.
+    //Initialisiert das ItemLauncherItem.
+    //Überprüft, ob das Item zum Inventar hinzugefügt werden kann.
     #endregion
     void Start()
     {
@@ -33,7 +33,7 @@ public class ItemLauncherItem : MonoBehaviour, IPointerClickHandler
 
     #region CheckCanBePickedUp Kommentare
     //Überprüft, ob das Item zum Inventar hinzugefügt werden kann.
-    //Ändert die Farbe des Bildes basierend auf der Verfügbarkeit des Platzes im Inventar.
+    //Ändert die Farbe des Bildes basierend auf der Verfügbarkeit des Platzes im Inventar. (weiß wenn verfügbar, grau wenn nicht verfügbar)
     #endregion
     public void CheckCanBePickedUp()
     {
@@ -42,13 +42,17 @@ public class ItemLauncherItem : MonoBehaviour, IPointerClickHandler
 
     #region OnPointerClick Kommentare
     //Wird aufgerufen, wenn auf das GameObject geklickt wird.
-    //Fügt das Item zum Inventar hinzu und aktualisiert das Image aller Items.
+    //Fügt das Item zum Inventar hinzu.
     #endregion
     public void OnPointerClick(PointerEventData eventData)
     {
         AddItemtoInventory();
     }
 
+    #region AddItemtoInventory Kommentare
+    //Fügt das Item zum Inventar hinzu.
+    //Aktualisiert die Verfügbarkeit aller ItemLauncherItems.
+    #endregion
     public void AddItemtoInventory()
     {
         inventoryManager.AddItemToInventory(item, gameObject);
@@ -59,6 +63,7 @@ public class ItemLauncherItem : MonoBehaviour, IPointerClickHandler
 
     #region InitializeItemLauncher Kommentare
     //Initialisiert das ItemLauncherItem.
+    //Setzt das Sprite des Items und die Größe des Sprites.
     #endregion
     private void InitializeItemLauncher()
     {

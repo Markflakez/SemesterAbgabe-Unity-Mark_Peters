@@ -9,6 +9,7 @@ public class HealthSystem : MonoBehaviour
     public float currentHealth;
     public float maxHealth = 100;
 
+
     #region Start Kommentare
     //Setzt den aktuellen Health Wert auf den maximalen Health Wert.
     #endregion

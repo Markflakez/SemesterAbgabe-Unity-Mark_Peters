@@ -11,19 +11,15 @@ public class InventoryManager : MonoBehaviour
     public HealthSystem healthSystem;
 
 
-
     #region Update Kommentare
+    //Fügt alle Items in der Szene bis das Inventar voll ist zum Inventar hinzu
     #endregion
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
-        {
             foreach (ItemLauncherItem itemLauncheritem in FindObjectsOfType<ItemLauncherItem>())
-            {
                 itemLauncheritem.AddItemtoInventory();
-            }
-        }
     }
 
 
@@ -46,10 +42,8 @@ public class InventoryManager : MonoBehaviour
         UpdateInstructionColors();
     }
 
-    #region RemoveItemFromInventory Kommentare
-    //Entfernt ein Item aus dem Inventar
-    //Wenn die Anzahl des Items im Slot größer als 1 ist, wird die Anzahl verringert
-    //Wenn die Anzahl des Items im Slot 1 ist, wird der Slot geleert
+    #region HandleExistingSlot Kommentare
+    //Erhöht die Anzahl des Items im gegebenen Slot
     #endregion
     private void HandleExistingSlot(InventorySlot existingSlot, Item newItem, GameObject itemToDestroy)
     {
@@ -58,8 +52,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     #region HandleNewSlot Kommentare
-    //Erstellt einen neuen Slot und fügt das Item hinzu
-    //Wenn kein Slot mehr frei ist, wird die Anzahl des Items im Slot erhöht
+    //Sucht einen leeren Slot und fügt dem das Item hinzu
+    //Wenn kein Slot mehr frei ist, wird die Anzahl des Items in einem bereits zugewiesenen Slot erhöht
     #endregion
     private void HandleNewSlot(Item newItem, GameObject itemToDestroy)
     {
@@ -78,7 +72,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     #region HandleItemCollection Kommentare
-    //Zerstört das Item und spielt den Sound ab
+    //Zerstört das Item und spielt den Item zugewiesenen Collect-Sound ab 
     #endregion
     private void HandleItemCollection(GameObject itemToDestroy, AudioClip collectSound)
     {
@@ -86,8 +80,10 @@ public class InventoryManager : MonoBehaviour
         audioSource.clip = collectSound;
         audioSource.Play();
     }
+
     #region HandleNoEmptySlot Kommentare
     //Wenn kein Slot mehr frei ist, wird die Anzahl des Items im Slot erhöht
+    //Wenn dies nicht möglich ist, wird eine Warnung ausgegeben, dass das Inventar voll ist
     #endregion
     private void HandleNoEmptySlot(Item newItem)
     {
@@ -106,7 +102,7 @@ public class InventoryManager : MonoBehaviour
 
 
     #region UpdateInstructionColors Kommentare
-    //Aktualisiert die Farben der Instructions (Spielerhilfen) basierend auf der Anzahl der Slots im Inventar
+    //Aktualisiert die Farben der Spielerhilf-Texten basierend auf der Anzahl der Slots im Inventar
     #endregion
     private void UpdateInstructionColors()
     {
@@ -120,27 +116,30 @@ public class InventoryManager : MonoBehaviour
     }
 
     #region CheckFullSlotsCount Kommentare
-    //Überprüft die Anzahl der vollen Slots im Inventar
+    //Gibt die Anzahl der vollen Slots im Inventar zurück
     #endregion
     public int CheckFullSlotsCount() => inventorySlots.Count(slot => slot.item != null && slot.item.itemCount == slot.item.maxStackCount);
 
     #region CheckEmptySlotsCount Kommentare
-    //Überprüft die Anzahl der leeren Slots im Inventar
+    //Gibt die Anzahl der leeren Slots im Inventar zurück
     #endregion
     public int CheckEmptySlotsCount() => inventorySlots.Count(slot => slot.item == null);
 
     #region CanThisItemBeAddedToInventory Kommentare
     //Überprüft, ob ein Item zum Inventar hinzugefügt werden kann
+    //Wenn das Item bereits im Inventar ist, wird die Anzahl erhöht
+    //Wenn das Item nicht im Inventar ist, wird ein neuer Slot erstellt
+    //Wenn das Item nicht im Inventar ist und kein Slot mehr frei ist, wird die Anzahl des Items im Slot erhöht
     #endregion
     public bool CanThisItemBeAddedToInventory(Item item) => GetExistingSlot(item) != null || GetEmptySlot() != null || (GetSlotWithSameItem(item)?.item.itemCount < GetSlotWithSameItem(item)?.item.maxStackCount);
 
     #region GetEmptySlot Kommentare
-    //Sucht nach einem leeren Slot und gibt diesen zurück
+    //Sucht nach einem leeren Slot im Inventar und gibt diesen zurück
     #endregion
     private InventorySlot GetEmptySlot() => inventorySlots.FirstOrDefault(slot => slot.item == null);
 
     #region GetExistingSlot Kommentare
-    //Überprüft, ob es einen Slot gibt, der das Item enthält, und gibt diesen zurück
+    //Sucht nach einem Slot, der das mitgegebene Item enthält, und gibt diesen zurück
     #endregion
     private InventorySlot GetExistingSlot(Item newItem) => inventorySlots.FirstOrDefault(slot => slot.item != null && slot.item.itemName == newItem.itemName && slot.item.itemCount < slot.item.maxStackCount);
 

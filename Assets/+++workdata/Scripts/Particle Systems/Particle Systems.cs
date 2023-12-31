@@ -24,9 +24,9 @@ public class ParticleSystems : MonoBehaviour
     public float moveSpeed;
 
     #region Start Kommentare
-    //Setzt die Anfangsposition des Burst-Partikelsystems auf die Endposition.
+    //Setzt die Anfangsposition des Burst-Partikelsystems auf die Endposition damit ich es nicht manuell machen muss.
     //Setzt die Startposition des Move-Partikelsystems.
-    //Erlaubt das Starten des Burst-Partikelsystems.
+    //Setzt den bool zur Erlaubnis des Startens des Burst-Partikelsystems auf true.
     #endregion
     private void Start()
     {
@@ -36,7 +36,7 @@ public class ParticleSystems : MonoBehaviour
     }
 
     #region Update Kommentare
-    //Wenn das Partikelsystem in Bewegung ist (der isMoving-Bool ist trur), wird die Funktion MoveParticleSystem() aufgerufen.
+    //Wenn das Partikelsystem in Bewegung ist (der isMoving-Bool ist trur), wird die Funktion MoveParticleSystem() jeden Frame aufgerufen.
     #endregion
     void Update()
     {

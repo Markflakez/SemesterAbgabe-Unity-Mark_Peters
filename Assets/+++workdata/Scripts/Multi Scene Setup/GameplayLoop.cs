@@ -19,6 +19,10 @@ public class GameplayLoop : MonoBehaviour
         SceneManager.SetActiveScene(gameObject.scene);
     }
 
+    #region Update Kommentare
+    //Wenn die Taste Escape gedrückt wird, wird die Methode ReturnToMainMenu aufgerufen um zum Hauptmenü zurückzukehren
+    //Wenn die Taste R gedrückt wird, wird die Methode ReloadGamePlay aufgerufen um die Szene neu zu laden
+    #endregion
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

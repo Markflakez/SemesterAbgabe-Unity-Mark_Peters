@@ -5,6 +5,8 @@ using UnityEngine;
 //a quick and dirty implementation of the MainMenu.
 public class MainMenu : MonoBehaviour
 {
+    //Wird aufgerufen, wenn der Start Button gedrückt wird.
+    //Startet das Spiel und lädt die Gameplay Szene.
     public void StartGame()
     {
         GameStateManager.StartGame();

@@ -16,7 +16,7 @@ public class ItemLauncher : MonoBehaviour
 
     #region OnEnable Kommentare
     //Wird aufgerufen, wenn das GameObject aktiviert wird.
-    //Startet die Coroutine zum Erscheinen der Items.
+    //Startet die Coroutine zum Spawnen der Items.
     #endregion
     void OnEnable()
     { 
@@ -32,7 +32,7 @@ public class ItemLauncher : MonoBehaviour
         StopAllCoroutines();
     }
     #region StartNewSpawnCoroutine Kommentare
-    //Stoppt die laufende Coroutine und startet eine neue damit es keine Überlappungen gibt.
+    //Stoppt die laufende Coroutine und startet eine neue damit nur eine Coroutine läuft.
     #endregion
     private void StartNewSpawnCoroutine()
     {
@@ -51,7 +51,7 @@ public class ItemLauncher : MonoBehaviour
     }
 
     #region IncreaseItemMultiplier Kommentare
-    //Veränder den Multiplier für den SpawnInterval der Items nach Slider Value.
+    //Verändert den Multiplier für den SpawnInterval der Items nach Slider Value.
     #endregion
     public void IncreaseDecreaseItemMultplier(Slider slider)
     {
@@ -59,7 +59,10 @@ public class ItemLauncher : MonoBehaviour
     }
 
     #region LaunchItem Kommentare
-    //Spawnt ein neues Item und schießt es von oberen Bildschirm rand nach unten.
+    //Spawnt ein neues Item und schießt es von dem oberen Bildschirm rand nach unten.
+    //Das Szenen Item wird nach einer bestimmten Zeit zerstört.
+    //Das Szenen Item bekommt ein zufälliges Item zugewiesen.
+    //Das Szenen Item bekommt eine zufällige geschwindigkeit zugewiesen.
     #endregion
     private void LaunchItem()
     {
@@ -74,6 +77,7 @@ public class ItemLauncher : MonoBehaviour
 
     #region SpawnItem Kommentare
     //Coroutine für das Spawnen der Items im SpawnInterval.
+    //Die Spawnrate wird durch den Multiplier beeinflusst.
     #endregion
     public IEnumerator SpawnItem()
     {
@@ -89,7 +93,7 @@ public class ItemLauncher : MonoBehaviour
     }
 
     #region DestroyItself Kommentare
-    //Coroutine, die das Item in der Szene nach einer bestimmten Zeit zerstört.
+    //Coroutine, die das Item in der Szene nach dem float itemLifeTime zerstört.
     #endregion
     public IEnumerator DestroyItself(GameObject gameObject)
     {

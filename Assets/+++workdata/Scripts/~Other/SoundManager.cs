@@ -21,7 +21,10 @@ public class SoundManager : MonoBehaviour
         UpdateMusicState();
     }
 
-
+    #region UpdateMusicState Kommentare
+    //Wenn die Musik aktiviert ist, wird die Musik abgespielt und der Text gelb 
+    //Wenn die Musik deaktiviert ist, wird die Musik pausiert und der Text weiﬂ
+    #endregion
     private void UpdateMusicState()
     {
         if (musicEnabled)
@@ -36,6 +39,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    #region ToggleMusic Kommentare
+    //Aktiviert oder deaktiviert die Musik
+    #endregion
     public void ToggleMusic()
     {
         musicEnabled = !musicEnabled;

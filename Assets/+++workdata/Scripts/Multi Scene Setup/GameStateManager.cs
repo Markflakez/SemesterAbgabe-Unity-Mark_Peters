@@ -15,7 +15,7 @@ public class GameStateManager : MonoBehaviour
     }
 
 
-    #region Kommentare
+    #region OnEnable Kommentare
     //Wenn eine Szene geladen wird, wird die Methode OnSceneLoaded aufgerufen
     #endregion
     private void OnEnable()
@@ -45,7 +45,7 @@ public class GameStateManager : MonoBehaviour
     }
 
     #region Kommentare DisableSceneGameObjects und EnableSceneGameObjects
-    //Deaktiviert/aktiviert alle wichtigen GameObjects der Szene
+    //Deaktiviert/aktiviert alle wichtigen Elemente der Szene
     #endregion
     private void DisableSceneElements()
     {

@@ -142,10 +142,11 @@ public class SceneLoader : MonoBehaviour
     }
 
 
-
+    #region LoadScene Kommentare
+    //Lädt die mitgegebene Szene und öffnet sie im Editor als einzige Szene.
+    #endregion
     private static void LoadScene(DefaultScenes scene)
     {
-        // Load the specified scene
         var scenePath = EditorBuildSettings.scenes[(int)scene].path;
         EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
     }

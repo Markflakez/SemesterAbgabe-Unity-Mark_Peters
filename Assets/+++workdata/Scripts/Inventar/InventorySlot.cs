@@ -13,7 +13,7 @@ public class InventorySlot : MonoBehaviour
     public Item item;
 
     #region Start Kommentare
-    //Startmethode wird aufgerufen, um das UI zu initialisieren und zu aktualisieren
+    //Startmethode wird aufgerufen, um das den Slot und seine UI-Elemente zu initialisieren und zu aktualisieren
     #endregion
     private void Start()
     {
@@ -21,7 +21,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     #region AddItem Kommentare
-    //Weist dem Slot ein neues Item zu und aktualisiert das UI
+    //Weist dem Slot ein neues Item zu und aktualisiert die UI-Elemente
     #endregion
     public void AddItem(Item newItem)
     {
@@ -30,7 +30,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     #region RemoveItem Kommentare
-    //Entfernt ein bestimmtes Item aus dem Slot und aktualisiert das UI
+    //Entfernt ein bestimmtes Item aus dem Slot und aktualisiert die UI-Elemente
     #endregion
     public void RemoveItem(Item itemToRemove)
     {
@@ -42,7 +42,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     #region IncreaseItemCount Kommentare
-    //Erhöht die Anzahl des Items im Slot und aktualisiert das UI
+    //Erhöht die Anzahl des Items im Slot und aktualisiert die UI-Elemente
     #endregion
     public void IncreaseItemCount(int amount)
     {
@@ -56,7 +56,10 @@ public class InventorySlot : MonoBehaviour
     }
 
     #region UpdateSlotUI Kommentare
-    //Aktualisiert den UI Slot basierend auf dem aktuellen Item
+    //Aktualisiert die UI-Elemente vom Slot basierend auf dem aktuell hinzugefügten Item
+    //Wenn kein Item vorhanden ist, werden die UI-Elemente zurückgesetzt
+    //Wenn die Anzahl des Items im Slot gleich der maximalen Anzahl ist, wird die Anzahl rot angezeigt um den Spieler darauf hinzuweisen, dass er kein weiteres Item mehr aufnehmen kann
+    //Wenn die Anzahl des Items im Slot kleiner der maximalen Anzahl ist, wird die Anzahl weiß angezeigt um den Spieler darauf hinzuweisen, dass der Slot noch nicht voll ist
     #endregion
     private void UpdateSlotUI()
     {
@@ -69,6 +72,8 @@ public class InventorySlot : MonoBehaviour
 
     #region UpdadeUIElements Kommentare
     //Aktualisiert die UI-Elemente mit den Werten des aktuellen Items
+    //Wenn die Anzahl des Items im Slot gleich ist mit dem Maximalwert des Items, wird das Item dunkel angezeigt um den Spieler darauf hinzuweisen, dass er kein weiteres Item mehr aufnehmen kann
+    //Wenn die Anzahl des Items im Slot kleiner ist als der Maximalwert des Items, wird das Item normal angezeigt um den Spieler darauf hinzuweisen, dass der Slot noch nicht voll ist
     #endregion
     private void UpdadeUIElements()
     {
@@ -90,7 +95,8 @@ public class InventorySlot : MonoBehaviour
     }
 
     #region ResetUIElements Kommentare
-    //Setzt die UI-Elemente auf Standardwerte zurück, wenn kein Item vorhanden ist
+    //Setzt die UI-Elemente auf Standardwerte zurück
+    //Deaktiviert die UI-Elemente
     #endregion
     private void ResetUIElements()
     {
@@ -109,7 +115,7 @@ public class InventorySlot : MonoBehaviour
     }
 
     #region AnimateItemImageScale Kommentare
-    //Skaliert das Item Bild um 20% kleiner und wieder zurück
+    //Skaliert das Item Bild um 20% kleiner und wieder zurück um dem Spieler visuell darzustellen, dass er ein Item aufgenommen hat (feedback)
     #endregion
     private void AnimateItemImageScale() => itemImage.transform.DOScale(1.2f, 0.15f).SetLoops(2, LoopType.Yoyo);
 

@@ -11,7 +11,6 @@ public class HealthBar : MonoBehaviour
     public TextMeshProUGUI healthAmountText;
 
     #region OnEnable Kommentare
-    //Wird aufgerufen, wenn das GameObject aktiviert wird.
     //Connected die Methode UpdateHealthBar als Observer für OnHealthChanged-Event.
     #endregion
     private void OnEnable()
@@ -20,7 +19,6 @@ public class HealthBar : MonoBehaviour
     }
 
     #region OnDisable Kommentare
-    //Wird aufgerufen, wenn das GameObject deaktiviert wird.
     //Disconnected die Methode UpdateHealthBar als Observer für OnHealthChanged-Event.
     #endregion
     private void OnDisable()
